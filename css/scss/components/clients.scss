@@ -1,0 +1,36 @@
+@use "../abstract/index" as *;
+
+#Clients {
+    h2{
+        @include responsive(350) {
+            font-size: 30px;
+        }
+
+        @include responsive(850) {
+            font-size: 40px;
+        }
+    }
+    .swiper-slide {
+        img {
+            @include responsive(350) {
+                width: 280px;
+            }
+
+            @include responsive(450) {
+                width: 250px;
+            }
+
+            @include responsive(650) {
+                width: initial;
+            }
+        }
+    }
+
+    .swiper-pagination{
+        span{
+            background-color: var(--second-color);
+            width: 12px;
+            height: 12px;
+        }
+    }
+}

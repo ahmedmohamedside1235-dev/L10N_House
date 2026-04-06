@@ -1,0 +1,360 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+:root {
+    --main-color: #719F3D;
+    --second-color: #de681d;
+}
+
+.firstColor {
+    color: $firstColor;
+}
+
+.secondColor {
+    color: $secondColor;
+}
+
+p {
+    color: #777;
+}
+
+
+section {
+    @for $i from 2 through 8 {
+        @if $i % 2==0 {
+            &:nth-of-type(#{$i}) {
+                background: #8e9eab;
+                background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);
+                background: linear-gradient(to right, #eef2f3, #8e9eab);
+            }
+        }
+    }
+
+    .title {
+        width: fit-content;
+        margin: auto;
+
+        h2 {
+            position: relative;
+            font-size: 40px;
+            font-weight: 700;
+            width: fit-content;
+            margin: auto;
+
+            &::after {
+                @include createEle($w: 70%, $h: 4px);
+                background-color: var(--second-color);
+                @include position($p: absolute, $b: -10px, $l: 50%);
+                transform: translateX(-50%) scaleX(0.5);
+                transition-duration: 0.5s;
+            }
+        }
+    }
+
+    &:hover {
+        .title {
+            h2 {
+                &::after {
+                    transform: translateX(-50%) scaleX(1);
+                }
+            }
+        }
+    }
+}
+
+
+.popup {
+    @include position($p: fixed, $t: 0, $l: 0, $z: 300);
+    @include area($w : 100%, $h: 100%);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    display: none;
+
+    .box {
+        background-color: #fff;
+        border-radius: 10px;
+        width: 80%;
+        margin: 30px auto;
+
+        .head {
+            text-align: center;
+            position: relative;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #000;
+
+            h4 {
+                margin-bottom: 0;
+            }
+
+            i {
+                @include position($p: absolute, $t: 50%, $r: 20px);
+                cursor: pointer;
+                transform: translateY(-50%);
+            }
+        }
+
+        .body {
+            p {
+                @include responsive(1050) {
+                    font-size: 13px;
+                }
+
+                @include responsive(1250) {
+                    font-size: 15px;
+                }
+            }
+
+            ol {
+                li {
+                    &::marker {
+                        color: var(--second-color);
+                        font-weight: 600;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.popup[data-popup-name*="video"] {
+    align-items: center;
+    justify-content: center;
+
+    .box {
+        background-color: transparent;
+        width: 800px;
+        height: 400px;
+        border-radius: 10px;
+        overflow: hidden;
+
+        @include responsive(350) {
+            width: 90%;
+            height: 200px;
+        }
+
+        @include responsive(450) {
+            height: 300px;
+        }
+
+        @include responsive(650) {
+            width: 80%;
+        }
+
+        @include responsive(850) {
+            width: 60%;
+            height: 400px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.popup[data-popup-name*="sector"] {
+    .box {
+        .body {
+            .row {
+                .item {
+                    text-align: center;
+                    background-color: rgb(235, 251, 238);
+                    border-radius: 10px;
+                    padding: 10px;
+
+                    @include responsive(350) {
+                        max-width: 280px;
+                        margin: auto;
+                    }
+
+                    img {
+                        width: 64px;
+                        height: 64px;
+                    }
+
+                    p {
+                        font-size: 13px;
+                        color: #000;
+                        background-color: rgb(223, 238, 226);
+                        margin-bottom: 0;
+
+                        @include responsive(1050) {
+                            font-size: 11px;
+                        }
+
+                        @include responsive(1250) {
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.popup[data-popup-name*="language"] {
+    .box {
+        width: 40%;
+        margin: 0 0 0 auto;
+        border-radius: 0;
+        transform: translateX(100%);
+        transition-duration: 1s;
+
+        @include responsive(350) {
+            width: 70%;
+        }
+
+        @include responsive(650) {
+            width: 40%;
+        }
+
+        .body {
+
+            h4 {
+                position: relative;
+                width: fit-content;
+
+                &::after {
+                    @include createEle($w: 80%, $h: 3px);
+                    @include position($p: absolute, $b: -24px, $l: 0);
+                    margin-bottom: 20px;
+                }
+            }
+
+            @for $i from 1 through 5 {
+                @if($i % 2==0) {
+                    .special {
+                        &:nth-of-type(#{$i}) {
+                            h4 {
+                                color: var(--second-color);
+
+                                &::after {
+                                    background-color: var(--second-color);
+                                }
+                            }
+
+                            ul {
+                                li {
+                                    i {
+                                        color: var(--second-color);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                @else {
+                    .special {
+                        &:nth-of-type(#{$i}) {
+                            h4 {
+                                color: var(--main-color);
+
+                                &::after {
+                                    background-color: var(--main-color);
+                                }
+                            }
+
+                            ul {
+                                li {
+                                    i {
+                                        color: var(--main-color);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+img {
+    user-select: none;
+}
+
+.loadingPadge {
+    @include position($p: fixed, $t: 0, $l: 0, $z: 1000);
+    height: 100%;
+    width: 100%;
+    background: #8e9eab;
+    background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);
+    background: linear-gradient(to right, #eef2f3, #8e9eab);
+    @include flex(center, center);
+    flex-direction: column;
+    opacity: 1;
+    transition-duration: 1s;
+
+    .image {
+        animation-name: scaleImage;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        img {
+            width: 180px;
+        }
+
+    }
+
+    .load {
+        margin-top: 40px;
+        width: 55px;
+        height: 55px;
+        border-radius: 100%;
+        position: relative;
+
+        span {
+            @include createEle(100%, 100%);
+            @include position($p: absolute, $t: 0, $l: 0);
+            border-radius: 100%;
+            border: 3px solid transparent;
+            border-bottom-color: transparent;
+            border-top-color: transparent;
+
+            &:nth-of-type(1) {
+                animation: load1 1s infinite linear;
+                border-left-color: var(--second-color);
+                border-right-color: var(--second-color);
+            }
+
+            &:nth-of-type(2) {
+                animation: load2 1s infinite linear;
+                border-left-color: var(--main-color);
+                border-right-color: var(--main-color);
+            }
+        }
+
+    }
+
+    &.hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+}
+
+#Top {
+    color: #fff;
+    @include flex(center, center);
+    font-size: 14px;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #719f3d;
+    @include position($p: fixed, $t: 50%,$r:-90%, $z: 200);
+    transition-duration: .5s;
+    cursor: pointer;
+
+    &.active{
+        right: -52px;
+    }
+    
+    &:hover{
+        right:0;
+    }
+
+}

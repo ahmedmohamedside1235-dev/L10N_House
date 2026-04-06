@@ -1,0 +1,52 @@
+@use "../abstract/index" as *;
+
+
+#Language_Sectors {
+    background-image: url(".././images/youth.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &::before {
+        @include createEle($w: 100%, $h: 100%);
+        @include position($p: absolute, $t: 0, $l: 0, $z: 1);
+        background: radial-gradient(#68b703, #305d00);
+        opacity: 0.8;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+
+        h2 {
+            color: #fff;
+
+            &::after {
+                background-color: #fff;
+            }
+            @include responsive(350){
+                font-size: 24px;
+            }
+
+            @include responsive(650){
+                font-size: 30px;
+            }
+        }
+
+        .buttons {
+            button {
+                background-color: #fff;
+                color: #EE5E29;
+                padding: 10px 20px;
+                font-weight: 600;
+                transition: 0.5s;
+                transform: translateY(0);
+                &:hover{
+                    transform: translateY(-10px);
+                }
+            }
+        }
+    }
+}

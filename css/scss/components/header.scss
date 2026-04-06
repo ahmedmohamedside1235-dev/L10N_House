@@ -1,0 +1,202 @@
+@use "./../abstract/index" as *;
+
+header {
+    height: 100dvh;
+    background: #8e9eab;
+    background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);
+    background: linear-gradient(to right, #eef2f3, #8e9eab);
+
+    @include responsive(350) {
+        padding-top: 65px;
+    }
+
+    @include responsive(450) {
+        padding-top: 80px;
+    }
+
+    @include responsive(650) {
+        padding-top: 90px;
+    }
+
+    @include responsive(850) {
+        padding-top: 0;
+    }
+
+    //* part1
+    .part1 {
+
+        .item {
+
+            h2 {
+                font-size: 65px;
+            }
+
+            @include responsive(350) {
+                h2 {
+                    font-size: 35px;
+                }
+
+                p {
+                    font-size: 15px;
+                }
+
+                h5 {
+                    font-size: 15px;
+                }
+            }
+
+            @include responsive(850) {
+                h2 {
+                    font-size: 60px;
+                }
+
+                p {
+                    font-size: initial;
+                }
+
+                h5 {
+                    font-size: initial;
+                }
+            }
+
+            .play {
+                i {
+                    position: relative;
+                    transition-duration: 0.5s;
+                    cursor: pointer;
+                    @include flex(center, center);
+                    @include area($w: 45px, $h: 45px);
+
+                    &::before {
+                        color: var(--main-color);
+                        transition-duration: 0.5s;
+                        z-index: 2;
+                        position: relative;
+                    }
+
+                    &::after {
+                        @include createEle($w: 100%, $h: 100%);
+                        @include position($p: absolute, $t: 50%, $l: 50%);
+                        transform: translate(-50%, -50%) scale(0);
+                        background-color: var(--main-color);
+                        border-radius: 100%;
+                        transition-duration: 0.5s;
+                    }
+                }
+
+                a {
+                    width: fit-content;
+
+                    &:hover {
+                        i {
+                            &::before {
+                                color: #fff;
+                            }
+
+                            &::after {
+                                transform: translate(-50%, -50%) scale(1);
+                            }
+                        }
+                    }
+                }
+
+                span {
+                    font-weight: 700;
+                }
+            }
+
+            .cd-headline.clip {
+                .cd-words-wrapper {
+                    &::after {
+                        background-color: var(--second-color);
+                    }
+                }
+            }
+        }
+    }
+
+    // * part2
+    .part2 {
+        @include responsive(350) {
+            .item {
+                width: 70%;
+                margin: auto;
+                transform: translateY(-30px);
+            }
+        }
+
+        @include responsive(450) {
+            .item {
+                width: 50%;
+            }
+        }
+
+        @include responsive(650) {
+            .item {
+                transform: translateY(-30px);
+            }
+        }
+
+        @include responsive(850) {
+            .item {
+                width: 90%;
+                transform: initial;
+            }
+        }
+    }
+
+    .bg-header {
+        @include position ($p: absolute, $b: 0, $l : 0);
+        @include area($w: 100%);
+        transform: rotate(180deg);
+
+        @include responsive(350) {
+            height: 50px;
+        }
+
+        @include responsive(850) {
+            height: 90px;
+        }
+    }
+
+    .arrows {
+        img {
+            @include position($p: absolute, $l: 50%, $b: 70px);
+            @include area($w: 25px);
+
+            @include responsive(350) {
+                width: 20px;
+                bottom: 40px;
+            }
+
+            @include responsive(650) {
+                bottom: 30px;
+            }
+
+            @include responsive(850) {
+                bottom: 80px;
+            }
+
+            &:nth-of-type(1) {
+                @include keyFram(1);
+                animation-name: arrow_1;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+            }
+
+            &:nth-of-type(2) {
+                @include keyFram(2, 14px);
+                animation-name: arrow_2;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+            }
+
+            &:nth-of-type(3) {
+                @include keyFram(3, 28px);
+                animation-name: arrow_3;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+            }
+        }
+    }
+}

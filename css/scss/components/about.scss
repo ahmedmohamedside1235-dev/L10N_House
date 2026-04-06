@@ -1,0 +1,20 @@
+@use "../abstract/index" as *;
+
+
+#About {
+    .content {
+        padding: 20px;
+    }
+
+    p {
+        @include responsive(1050) {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        @include responsive(1250) {
+            font-size: 15px;
+            font-weight: 500;
+        }
+    }
+}

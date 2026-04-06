@@ -1,0 +1,149 @@
+@use "../abstract/index" as *;
+
+#Contact {
+    background-image: url("../images/contact-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &::before {
+        @include createEle($h: 100%);
+        background: radial-gradient(#68b703, #305d00);
+        opacity: .8;
+        @include position($p : absolute, $t: 0, $l: 0, $z: 2);
+    }
+
+    .container {
+        position: relative;
+        z-index: 3;
+
+        .title {
+            h2 {
+                color: #fff;
+
+                &::after {
+                    background-color: #fff;
+                }
+            }
+
+            p {
+                color: #fff;
+            }
+        }
+
+        .content {
+            .row {
+                form {
+                    background-color: #fff;
+                    padding: 24px;
+                    border-radius: 10px;
+
+                    @include responsive(450) {
+                        width: 350px;
+                        margin: auto;
+                    }
+
+                    textarea {
+                        resize: none;
+                    }
+
+                    button {
+                        background-color: var(--second-color);
+                        color: #fff;
+                        font-weight: 600;
+                        padding: 10px 20px;
+                    }
+                }
+
+                .information {
+                    .box {
+                        background-color: #fff;
+                        padding: 24px;
+                        border-radius: 10px;
+                        height: 100%;
+
+                        @include responsive(450) {
+                            width: 350px;
+                            margin: auto;
+                        }
+
+                        @include responsive(850) {
+                            height: 96.5%;
+                        }
+
+                        @include responsive(1050) {
+                            height: 100%;
+                        }
+
+                        .address,
+                        .phone,
+                        .email {
+
+                            h6 {
+                                font-weight: 700;
+                            }
+
+                            i {
+                                color: var(--second-color);
+                                font-size: 20px;
+                            }
+
+                            a {
+                                color: #777;
+
+                                @include responsive(350) {
+                                    font-size: 15px;
+                                }
+                            }
+                        }
+
+                        .contact {
+                            .item {
+                                padding-block: 20px;
+
+                                @include responsive(350) {
+                                    padding: 0;
+                                }
+
+                                a {
+                                    border-radius: 100%;
+                                    color: #fff;
+                                    width: 42px;
+                                    height: 42px;
+                                    @include flex(center, center);
+
+                                    &:nth-of-type(1) {
+                                        background-color: #0045B5;
+                                    }
+
+                                    &:nth-of-type(2) {
+                                        background-color: #C52661;
+                                    }
+
+                                    &:nth-of-type(3) {
+                                        background-color: #212529;
+                                    }
+
+                                    i {
+                                        font-size: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer {
+    p {
+        span {
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            color: var(--second-color);
+        }
+    }
+}

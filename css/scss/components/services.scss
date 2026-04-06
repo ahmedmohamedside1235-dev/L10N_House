@@ -1,0 +1,72 @@
+@use "../abstract/index" as *;
+
+#Services {
+    .item {
+        padding: 20px 0;
+        width: 90%;
+        margin: auto;
+        transition-duration: .5s;
+        border-radius: 20px;
+
+        &:hover {
+            background-color: #fff;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px #00000080;
+        }
+
+        img {
+            width: 13%;
+            @include responsive(350){
+                width: 20%;
+            }
+
+            @include responsive(450){
+                width: 16%;
+            }
+
+            @include responsive(650){
+                width: 14%;
+            }
+
+            @include responsive(850){
+                width: 20%;
+            }
+
+            @include responsive(1050){
+                width: 16%;
+            }
+
+            @include responsive(1250){
+                width: 13%;
+            }
+        }
+
+        p {
+            padding: 0 25px;
+            @include responsive(350){
+                padding: 0;
+                font-size: 14px;
+            }
+
+            @include responsive(450){
+                width: 80%;
+                margin: auto;
+            }
+
+            @include responsive(850){
+                width: 85%;
+            }
+
+            @include responsive(1050){
+                width: 95%;
+            }
+
+
+        }
+
+        span.read{
+            cursor: pointer;
+        }
+    }
+
+}
