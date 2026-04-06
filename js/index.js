@@ -87,7 +87,7 @@ $(window).on("load", function () {
     setTimeout(() => {
         loadpadge.addClass("hide");
         $("body").removeClass("overflow-hidden");
-    }, 1000);
+    }, 500);
 
 });
 
